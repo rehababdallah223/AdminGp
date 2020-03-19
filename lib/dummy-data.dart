@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'models/book.dart';
+import 'models/category.dart';
 import 'models/user.dart';
 
  var DUMMY_USERS =  [
@@ -150,4 +151,31 @@ import 'models/user.dart';
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
   ),
 
+];
+
+var DUMMY_CATEGORIES =  [
+  Categoreey(
+    id: 'c7',
+    title: 'Romance',
+  ),
+  Categoreey(
+    id: 'c8',
+    title: 'Short Story',
+  ),
+  Categoreey(
+    id: 'c9',
+    title: 'Sceience Fiction',
+  ),
+  Categoreey(
+    id: 'c10',
+    title: 'Action And Adventure',
+  ),
+  Categoreey(
+    id: 'c11',
+    title: 'Crime and Detective',
+  ),
+  Categoreey(
+    id: 'c12',
+    title: 'Comic and Graphic',
+  ),
 ];

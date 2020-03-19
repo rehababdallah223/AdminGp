@@ -25,11 +25,10 @@ class _CategoriesListState extends State<CategoriesList> {
     //   print(doc['name']);
     // }
 
-    categories.forEach((Categoreey){
-      print("this is Id ${Categoreey.id} , this is title ${Categoreey.title}");
-      
-
-    });
+    // categories.forEach((Categoreey){
+    //   print("this is Id ${Categoreey.id} , this is title ${Categoreey.title}");
+    // });
+    
     return ListView.builder(
       itemCount: categories.length,
       itemBuilder: (context,index){
