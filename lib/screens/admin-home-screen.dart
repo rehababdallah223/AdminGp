@@ -1,4 +1,5 @@
 import 'package:admin_test/screens/OnlineBooks/OnlineBookView.dart';
+import 'package:admin_test/screens/UserBook/BookManage.dart';
 import 'package:flutter/material.dart';
 import 'Users/UserManage.dart';
 import 'admin-categories-screen/home.dart';
@@ -51,8 +52,8 @@ class AdminHomeScreen extends StatelessWidget {
               //-------------------books inkwell---------------
               InkWell(
                 onTap: () {
-                /*  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => AdminBooksScreen()));*/
+                 Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => BookManage()));
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 80, horizontal: 5),

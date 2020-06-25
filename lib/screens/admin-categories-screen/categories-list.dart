@@ -30,7 +30,7 @@ class _CategoriesListState extends State<CategoriesList> {
     // });
     
     return ListView.builder(
-      itemCount: categories.length,
+      itemCount: categories == null ? 0 : categories.length,
       itemBuilder: (context,index){
         return CategoryTile(category: categories[index],);
 

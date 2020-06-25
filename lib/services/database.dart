@@ -1,7 +1,6 @@
-
-
 import 'package:admin_test/common/repository.dart';
 import 'package:admin_test/models/OnlineBook.dart';
+import 'package:admin_test/models/book.dart';
 import 'package:admin_test/models/category.dart';
 import 'package:admin_test/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,12 +19,16 @@ class DatabaseService
     final Repository _categoryRepo = new Repository("categories");
     final Repository _onlineBookRepo = new Repository("Online_books");
     final Repository _usersRepo = new Repository("users");
+    final Repository _bookRepo = new Repository("books");
+
 
 
   //collection refrence w hwa refrence l collection mo3in fi ll database
   final CollectionReference categoriesCollection = Firestore.instance.collection('categories');
   final CollectionReference onlineBookCOllection = Firestore.instance.collection('Online_books');
   final CollectionReference usersCOllection = Firestore.instance.collection('users');
+  final CollectionReference booksCOllection = Firestore.instance.collection('books');
+
 
 
 Future updateUserData(String title) async 
@@ -70,6 +73,12 @@ Future deleteUser(docId) async {
     await _usersRepo.removeDocument(docId);
     return;
   }
+
+Future deleteBook(docId) async {
+    
+    await _bookRepo.removeDocument(docId);
+    return;
+  }  
 
 //--------------------------Add new Online bookBook-------------------------------------------
   Future updateOnlineBookData(
@@ -150,4 +159,37 @@ Future deleteUser(docId) async {
       );
     }).toList();
   }  
+
+
+      // get User books stream
+  Stream<List<Book>> get books {
+    return booksCOllection.snapshots().map(bookListFromSnapshot);
+  }
+
+//online user books list from snapshot
+
+  List<Book> bookListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return Book(
+        documentId: doc.documentID,
+        bookName: doc.data['bookname'] ?? '',
+        authorName: doc.data['authorname'] ?? '',
+        bookImage: doc.data['image'] ?? '',
+        selectedCategory: doc.data['category'] ?? '',
+        describtion: doc.data['decription'] ?? '',
+        userName: doc.data['username'] ?? '',
+      );
+    }).toList();
+  }  
+
+  //-----------------------Get category List---------------------------------
+
+  Future<List<Categoreey>> getCategories() async {
+    return _categoryRepo.getDataCollection().then((doc) {
+      return doc.documents
+          .map((b) => Categoreey.fromSnapshot(b.data, b.documentID))
+          .toList();
+    });
+  }
+
 }
