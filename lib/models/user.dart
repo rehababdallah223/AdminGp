@@ -1,16 +1,22 @@
-import 'package:flutter/material.dart';
+class UserDetails {
 
-class User {
-  final String id;
-  final String name;
-  final String imageUrl;
-  final int rate;
+  final String firstName;
+  final String lastName;
+  final String phoneNumber;
+  final String email;
+  final String userID;
+  final String image;
+ 
 
-   User({
-    @required this.id,
-    @required this.name,
-    @required this.imageUrl,
-    @required this.rate,
-  });
+  UserDetails({this.firstName, this.lastName, this.phoneNumber, this.email, this.userID,this.image});
+
+    UserDetails.fromData(Map<String, dynamic> data)
+      : firstName = data['firstname'],
+        lastName = data['lastname'],
+        email = data['email'],
+        phoneNumber = data['phonenumber'],
+        userID = data['uid'],
+        image = data['image'] ;
+
 
 }

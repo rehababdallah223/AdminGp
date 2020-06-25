@@ -30,7 +30,7 @@ Future Add(String categoryName) async
       title: categoryTitle,
     );
     setState(() {
-      DUMMY_CATEGORIES.add(newcat);
+     // DUMMY_CATEGORIES.add(newcat);
     });
   }
 

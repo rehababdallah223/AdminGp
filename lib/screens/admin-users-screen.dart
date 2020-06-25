@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
 import '../dummy-data.dart';
 
@@ -9,7 +9,7 @@ class AdminUsersScreen extends StatefulWidget {
 
 class _AdminUsersScreenState extends State<AdminUsersScreen> {
 
-  void removeUser (String id)
+ /* void removeUser (String id)
   {
 
     setState(() {
@@ -18,7 +18,7 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
       });
     });
 
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -115,3 +115,4 @@ class UserItem extends StatelessWidget {
     );
   }
 }
+*/

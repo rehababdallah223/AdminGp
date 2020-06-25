@@ -3,8 +3,8 @@
 import 'package:admin_test/common/repository.dart';
 import 'package:admin_test/models/OnlineBook.dart';
 import 'package:admin_test/models/category.dart';
+import 'package:admin_test/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -19,14 +19,14 @@ class DatabaseService
 
     final Repository _categoryRepo = new Repository("categories");
     final Repository _onlineBookRepo = new Repository("Online_books");
-
-
-
+    final Repository _usersRepo = new Repository("users");
 
 
   //collection refrence w hwa refrence l collection mo3in fi ll database
   final CollectionReference categoriesCollection = Firestore.instance.collection('categories');
   final CollectionReference onlineBookCOllection = Firestore.instance.collection('Online_books');
+  final CollectionReference usersCOllection = Firestore.instance.collection('users');
+
 
 Future updateUserData(String title) async 
 {
@@ -54,14 +54,20 @@ Stream<List<Categoreey>> get categories
 }
 
 Future deleteCategory(docId) async {
-    // bookCOllection.document(docId).delete();
+    
     await _categoryRepo.removeDocument(docId);
     return;
   }
 
 Future deleteOnlineBook(docId) async {
-    // bookCOllection.document(docId).delete();
+   
     await _onlineBookRepo.removeDocument(docId);
+    return;
+  }
+
+Future deleteUser(docId) async {
+    
+    await _usersRepo.removeDocument(docId);
     return;
   }
 
@@ -123,5 +129,25 @@ Future deleteOnlineBook(docId) async {
       );
     }).toList();
   }
+  
 
+    // get Users stream
+  Stream<List<UserDetails>> get user {
+    return usersCOllection.snapshots().map(usersListFromSnapshot);
+  }
+
+//online users list from snapshot
+
+  List<UserDetails> usersListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return UserDetails(
+        userID: doc.documentID,
+        firstName: doc.data['firstname'] ?? '',
+        lastName: doc.data['lastname'] ?? '',
+        image: doc.data['image'] ?? '',
+        phoneNumber: doc.data['phonenumber'] ?? '',
+        email: doc.data['email'] ?? '',
+      );
+    }).toList();
+  }  
 }
